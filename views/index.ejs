@@ -1,0 +1,41 @@
+<%- include("partials/header.ejs") %>
+
+        <div class="container">
+            <h1 class="mb-4 mt-4">Blog Home Page</h1>
+            <a href="/posts/new" class="btn btn-success mb-4">Create a New Post</a>
+            <% if (posts.length == 0) { %>
+                <h3>No Posts Here!</h3>
+                <p>Create a blog post to display them on the home page!</p>
+            <% } else { %>
+                <% posts.forEach((post, index) => { %>
+                    <div class="card mb-5">
+                        <div class="card-body">
+                            <div class="card-subtitle"><%= post.author %></div>
+                            <h1 class="card-title"><%= post.title %></h1>
+                            <% if (!post.editDate || post.editDate.trim() === '') { %>
+                                <div class="card-subtitle mb-3">Created&nbsp;: <%= post.creationDate %> at <%= post.creationTime %></div>
+                                <div class="card-text mb-2"><%= post.content %></div>
+                                <div class="btn-toolbar">
+                                    <a href="/posts/edit/<%= index %>" class="btn btn-secondary">Edit</a>
+                                    <form action="/posts/delete/<%= index %>" method="POST">
+                                        <button style="margin-left: 10px"type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                            <% } else { %>
+                                <div class="card-subtitle mb-1">Created&nbsp;: <%= post.creationDate %> at <%= post.creationTime %></div>
+                                <div class="card-subtitle mb-3">Last Edit: <%= post.editDate %> at <%= post.editTime %></div>
+                                <div class="card-text mb-2"><%= post.content %></div>
+                                <div class="btn-toolbar">
+                                    <a href="/posts/edit/<%= index %>" class="btn btn-secondary">Edit</a>
+                                    <form action="/posts/delete/<%= index %>" method="POST">
+                                        <button style="margin-left: 10px"type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } %>
+        </div>
+    </body>
+</html>

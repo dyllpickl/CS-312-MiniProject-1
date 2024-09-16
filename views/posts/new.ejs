@@ -1,0 +1,26 @@
+<%- include("../partials/header.ejs") %>
+
+        <div class="container">
+            <h1 class="mb-4 mt-4">Create a Blog Post</h1>
+            <div class="card-body">
+                <form action="/posts" method="POST">
+                    <div class="form-group mb-4">
+                        <label for="author">Blog Author</label>
+                        <input type="text" name="author" id="author" placeholder="John Doe" class="form-control">
+                    </div>
+                    <div class="form-group mb-4">
+                        <label for="title">Blog Title*</label>
+                        <input type="text" name="title" id="title" placeholder="My Blog Title" class="form-control" required>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label for="contents">Blog Contents*</label>
+                        <textarea type="text" name="contents" id="contents" placeholder="Blog Text Here" rows="5" cols="20" class="form-control" required></textarea>
+                    </div>
+                    <a href="/" class="btn btn-secondary">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
